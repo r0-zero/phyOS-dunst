@@ -202,22 +202,15 @@ typedef struct _NotifyNotificationPrivate
 
 int get_id(NotifyNotification *n)
 {
-    knickers *kn = n->priv;
+        guint32 id;
+        g_object_get(G_OBJECT(n), "id", &id, NULL);
 
-    /* I'm sorry for taking a peek */
-    return kn->id;
+        return (int)id;
 }
 
 void put_id(NotifyNotification *n, guint32 id)
 {
-    knickers *kn = n->priv;
-
-    /* And know I'm putting stuff into
-     * your knickers. I'm sorry.
-     * I'm so sorry.
-     * */
-
-    kn->id = id;
+        g_object_set(G_OBJECT(n), "id", id, NULL);
 }
 
 void actioned(NotifyNotification *n, char *a, gpointer foo)
